@@ -1,6 +1,7 @@
 const db = require('../connector/database');
 
-const dbObjects = [ `DROP TABLE STUDENTS;`,`DROP TABLE STUDENTS_DTLS;`,`DROP TABLE STAFFS;`];
+
+const dbObjects = [`DROP VIEW STUDENTS_DETAILS_RELATION_V`];
 
 dbObjects.forEach(obj=>{
     db.appDatabase.run(

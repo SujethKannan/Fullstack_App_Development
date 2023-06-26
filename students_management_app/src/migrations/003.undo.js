@@ -1,7 +1,14 @@
 const db = require('../connector/database');
 
 
-const dbObjects = [`DROP VIEW STUDENTS_DTLS_RELATION_V`];
+const dbObjects = [
+    `DROP TRIGGER STUDENTS_CREATED_TRG;`,
+    `DROP TRIGGER STUDENTS_MODIFIED_TRG;`,
+    `DROP TRIGGER STUDENTS_EMAIL_TRG;`,
+    `DROP TRIGGER STAFFS_CREATED_TRG;`,
+    `DROP TRIGGER STAFFS_MODIFIED_TRG;`,
+    `DROP TRIGGER STAFFS_EMAIL_TRG;`
+];
 
 dbObjects.forEach(obj=>{
     db.appDatabase.run(

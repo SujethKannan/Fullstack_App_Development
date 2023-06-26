@@ -27,14 +27,6 @@ const dbObjects = [
     SET EMAIL = LOWER(REPLACE(NAME,' ','.'))||'@collegestudent.com'
     WHERE ID= NEW.ID;
     END;`,
-    `CREATE TRIGGER IF NOT EXISTS STUDENTS_UPDATE_EMAIL_TRG
-    AFTER UPDATE
-    ON STUDENTS
-    BEGIN
-    UPDATE STUDENTS  
-    SET EMAIL = LOWER(REPLACE(NAME,' ','.'))||'@collegestudent.com'
-    WHERE ID= NEW.ID;
-    END;`,
     `CREATE TRIGGER IF NOT EXISTS STAFFS_CREATED_TRG
     AFTER INSERT 
     ON STAFFS 
@@ -59,15 +51,7 @@ const dbObjects = [
     UPDATE STAFFS 
     SET EMAIL = LOWER(REPLACE(NAME,' ','.'))||'@collegefaculty.com'
     WHERE ID= NEW.ID;
-    END;`,
-    `CREATE TRIGGER IF NOT EXISTS STAFFS_UPDATE_EMAIL_TRG
-    AFTER UPDATE
-    ON STAFFS
-    BEGIN
-    UPDATE STAFFS  
-    SET EMAIL = LOWER(REPLACE(NAME,' ','.'))||'@collegefaculty.com'
-    WHERE ID= NEW.ID;
-    END;`,
+    END;`
 ];
 
 dbObjects.forEach(obj=>{
