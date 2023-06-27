@@ -8,7 +8,8 @@ const appDatabase = new sqlite.Database(
     sqlite.OPEN_READWRITE,
     err=>{
         if(err){
-            return console.log('error connecting to the database::', err);
+             console.log('error connecting to the database::', err);
+             return;
         }
         console.log('app connected to the database');
     }

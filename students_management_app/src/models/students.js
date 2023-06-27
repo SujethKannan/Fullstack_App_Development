@@ -1,11 +1,11 @@
-const consraints = require('../config/consraints');
-const db=require('../coonector/database');
+const constants = require('../config/constatnts');
+const db=require('../connector/database');
 
 
 module.exports={
    getStudents:function(){
         return new Promise((resolve,reject)=>{
-            const sql = `SELECT * FROM STUDENTS WHERE STATUS=${consraints.status.active}`
+            const sql = `SELECT * FROM STUDENTS WHERE STATUS=${constants.status.active}`
             db.appDatabase.all(
                 sql,
                 [],
@@ -21,7 +21,7 @@ module.exports={
     },
     getStudentById:function(id){
         return new Promise((resolve,reject)=>{
-            const sql = `SELECT * FROM STUDENTS WHERE ID=? AND STATUS=${consraints.status.active}`
+            const sql = `SELECT * FROM STUDENTS WHERE ID=? AND STATUS=${constants.status.active}`
             db.appDatabase.get(
                 sql,
                 [id],
@@ -31,20 +31,20 @@ module.exports={
                         return reject('error')
                     }
                     return resolve(row)
-                }
+                } 
             )
     
         })
     },
     
-    insertStudents:function(data){
+    insertStudent:function(data){
         return new Promise((resolve,reject)=>{
-        const sql =`INSERT INTO STUDENTS (NAME, STREAM, DEPARTMENT, BATCH, DOB, MOBILE_NO,STATUS)
-        VALUES(?,?,?,?,?,?,?);`
+        const sql =`INSERT INTO STUDENTS (NAME, STREAM, DEPARTMENT, BATCH, DOB, MOBILE_NO)
+        VALUES(?,?,?,?,?,?)`;
         
         db.appDatabase.run(
             sql,
-            [data.NAME,data.STREAM,data.DEPARTMENT,data.DOB,data.BATCH,data.MOBILE_NO],
+            [data.name,data.stream,data.department,data.batch,data.dob,data.mobile_no],
             (err,result)=>{
                 if(err){
                     console.log('[insertStudent Model]:unable to insert data',err);
@@ -57,10 +57,10 @@ module.exports={
     },
     updateStudentsById:function(data,id){
         return new Promise((resolve,reject)=>{
-            const sql= 'UPDATE STUDENTS SET NAME=?,STREAM=?,DEPARTMENT=?,BATCH=?,MOBILE_NO=?,EMAIL=?,STATUS=? WHERE ID=?';
+            const sql= 'UPDATE STUDENTS SET NAME=?,STREAM=?,DEPARTMENT=?,BATCH=?,DOB=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}';
             db.appDatabase.run(
                 sql,
-                [data.NAME,data.STREAM,data.DEPARTMENT,data.BATCH,data.MOBILE_NO,data.EMAIL,data.STATUS,id],
+                [data.name,data.stream,data.department,data.batch,data.dob,data.mobile_no,data.email,id],
                 (err,result)=>{
                     if(err){
                         console.log('[updateStudentsByIdModel]:unable to update data',err);
@@ -73,7 +73,10 @@ module.exports={
     },
     deleteStudentsById:function(id){
         return new Promise((resolve,reject)=>{
-            const sql= `DELETE FROM STUDENTS WHERE ID=? AND STATUS=${consraints.status.active}`
+            const sql= `UPDATE STUDENTS 
+            SET STATUS=${constants.status.inactive}
+            WHERE ID =?
+            AND STATUS=${constants.status.active}`
             db.appDatabase.run(
                 sql,
                 [id],
@@ -94,7 +97,7 @@ module.exports={
         VALUES(?,?,?,?)`
         db.appDatabase.run(
             sql,
-            [data.STUDENTS_ID,data.AGE,data.ADDRESS,data.BLOOD_GROUP],
+            [data.student_id,data.age,data.address,data.blood_group],
             (err,result)=>{
                 if(err){
                     console.log('[insertStudentsDtlsModel]:unable to insert data',err);
@@ -108,12 +111,12 @@ module.exports={
     updateStudentsDtlsById:function(data,Student_Id){
         return new Promise((resolve,reject)=>{
             const sql= `UPDATE STUDENTS_DETAILS
-            SET STUDENT_ID=?, AGE=?, ADDRESS=?, BLOOD_GROUP=?
-            WHERE ID=?;`
+            SET  AGE=?, ADDRESS=?, BLOOD_GROUP=?
+            WHERE ID=?`;
             
             db.appDatabase.run(
                 sql,
-                [data.AGE,data.ADDRESS,data.BLOOD_GROUP,id],
+                [data.age,data.address,data.blood_group,id],
                 (err,result)=>{
                     if(err){
                         console.log('[updateStudentsDtlsByIdModel]:unable to update data',err);
@@ -126,7 +129,7 @@ module.exports={
     },
     getStudentsdata:function(){
         return new Promise((resolve,reject)=>{
-            const sql = `SELECT * FROM STUDENTS_DETAILS_RELATION_V;`
+            const sql = `SELECT * FROM STUDENTS_DETAILS_RELATION_V`;
             db.appDatabase.all(
                 sql,
                 [],

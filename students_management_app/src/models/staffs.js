@@ -1,11 +1,11 @@
-const consraints = require('../config/consraints');
-const db=require('../coonector/database');
+const constants = require('../config/constatnts');
+const db=require('../connector/database');
 
 
 module.exports={
    getStaffs:function(){
         return new Promise((resolve,reject)=>{
-            const sql = `SELECT * FROM STAFFS WHERE STATUS=${consraints.status.active}`
+            const sql = `SELECT * FROM STAFFS WHERE STATUS=${constants.status.active}`
             db.appDatabase.all(
                 sql,
                 [],
@@ -21,7 +21,7 @@ module.exports={
     },
     getStaffsById:function(id){
         return new Promise((resolve,reject)=>{
-            const sql = `SELECT * FROM STAFFS WHERE ID=? AND STATUS=${consraints.status.active}`
+            const sql = `SELECT * FROM STAFFS WHERE ID=? AND STATUS=${constants.status.active}`
             db.appDatabase.get(
                 sql,
                 [id],
@@ -39,12 +39,12 @@ module.exports={
     
     insertStaffs:function(data){
         return new Promise((resolve,reject)=>{
-        const sql =`INSERT INTO STAFFS (NAME, SUBJECT, DEPARTMENT,MOBILE_NO,STATUS)
-        VALUES(?,?,?,?,?);`
+        const sql =`INSERT INTO STAFFS (NAME, SUBJECT, DEPARTMENT,MOBILE_NO)
+        VALUES(?,?,?,?)`;
         
         db.appDatabase.run(
             sql,
-            [data.NAME,data.STREAM,data.DEPARTMENT,data.DOB,data.BATCH,data.MOBILE_NO,data.STATUS],
+            [data.name,data.subject,data.department,data.mobile_no],
             (err,result)=>{
                 if(err){
                     console.log('[insertStaffs Model]:unable to insert data',err);
@@ -57,10 +57,10 @@ module.exports={
     },
     updateStaffsById:function(data,id){
         return new Promise((resolve,reject)=>{
-            const sql= 'UPDATE STAFFS SET NAME=?,SUBJECT=?,DEPARTMENT=?,MOBILE_NO=?,EMAIL=?,STATUS=? WHERE ID=?';
+            const sql= 'UPDATE STAFFS SET NAME=?,SUBJECT=?,DEPARTMENT=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}';
             db.appDatabase.run(
                 sql,
-                [data.NAME,data.STREAM,data.DEPARTMENT,data.BATCH,data.MOBILE_NO,data.EMAIL,data.STATUS,id],
+                [data.name,data.subject,data.department,data.mobile_no,data.email,id],
                 (err,result)=>{
                     if(err){
                         console.log('[updateStaffsByIdModel]:unable to update data',err);
@@ -73,7 +73,10 @@ module.exports={
     },
     deleteStaffsById:function(id){
         return new Promise((resolve,reject)=>{
-            const sql= `DELETE FROM STAFFS WHERE ID=? AND STATUS=${consraints.status.active}`
+            const sql= `UPDATE STAFFS 
+            SET STATUS=${constants.status.inactive}
+            WHERE ID =?
+            AND STATUS=${constants.status.active}`
             db.appDatabase.run(
                 sql,
                 [id],

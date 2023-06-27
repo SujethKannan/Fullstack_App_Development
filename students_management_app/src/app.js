@@ -14,6 +14,10 @@ app.set('views',path.resolve(__dirname,'views'))
 //     response.send('Server is up and running')
 // });
 
+app.use(express.urlencoded({extended:true}));
+app.use(bodyparser.urlencoded({extended:true}));
+
+
 app.use('/app',Router);
 
 // app.get('/home',(request,response)=>{
