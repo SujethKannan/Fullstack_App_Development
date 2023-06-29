@@ -19,7 +19,7 @@ module.exports={
             )
         })
     },
-    getStaffsById:function(id){
+    getStaffById:function(id){
         return new Promise((resolve,reject)=>{
             const sql = `SELECT * FROM STAFFS WHERE ID=? AND STATUS=${constants.status.active}`
             db.appDatabase.get(
@@ -37,7 +37,7 @@ module.exports={
         })
     },
     
-    insertStaffs:function(data){
+    insertStaff:function(data){
         return new Promise((resolve,reject)=>{
         const sql =`INSERT INTO STAFFS (NAME, SUBJECT, DEPARTMENT,MOBILE_NO)
         VALUES(?,?,?,?)`;
@@ -55,7 +55,7 @@ module.exports={
         )
     })
     },
-    updateStaffsById:function(data,id){
+    updateStaffById:function(data,id){
         return new Promise((resolve,reject)=>{
             const sql= 'UPDATE STAFFS SET NAME=?,SUBJECT=?,DEPARTMENT=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}';
             db.appDatabase.run(
@@ -71,7 +71,7 @@ module.exports={
             )
         })
     },
-    deleteStaffsById:function(id){
+    deleteStaffById:function(id){
         return new Promise((resolve,reject)=>{
             const sql= `UPDATE STAFFS 
             SET STATUS=${constants.status.inactive}
