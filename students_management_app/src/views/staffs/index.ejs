@@ -3,7 +3,17 @@
 <h3>STAFFS SECTION</h3>
 <br>
 <a class="btn btn-primary" href="/app/staffs/add">Add a Staff</a>
+<form action="/app/staffs/search" method="post">
+    <% if (errors.staff_id){ %>
+        <%= errors.staff_id.msg %>
+   <% } %>
+    <input type="text" class="form-control shadow-none mb-3 phText" name="staff_id" placeholder="Enter staff_id to search">
+    <% if (errors.no_Data){ %>
+        <%= errors.no_Data %>
+   <% } %>
+</form>
 
 
 
 <%- include('../footer')  %>
+ 

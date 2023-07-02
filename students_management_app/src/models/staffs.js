@@ -1,4 +1,4 @@
-const constants = require('../config/constatnts');
+const constants = require('../config/constants');
 const db=require('../connector/database');
 
 

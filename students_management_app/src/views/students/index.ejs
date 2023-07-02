@@ -3,7 +3,16 @@
 <h3>STUDENTS SECTION</h3>
 <br>
 <a class="btn btn-primary" href="/app/students/add">Add a Student</a>
-
+<form action="/app/students/search" method="post">
+      <% if (errors.student_id){ %>
+            <%= errors.student_id.msg %>
+       <% } %>
+    <input type="text" class="form-control shadow-none mb-3 phText" name="student_id" placeholder="Enter student_id to search">
+    <% if (errors.no_Data){ %>
+        <%= errors.no_Data %>
+   <% } %>
+</form>
 
 
 <%- include('../footer')  %>
+ 

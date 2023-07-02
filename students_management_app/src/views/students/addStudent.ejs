@@ -1,15 +1,36 @@
 <%- include('../header')  %>   
    
 <h3>STUDENTS SECTION</h3>
-<h4>Add Student</h4>
+
 <br>
 <div class="container">
+
+    <h4>Add Student</h4>
+    
     <form action="/app/students/add" method="post">
+        <% if (errors.name){ %>
+            <%= errors.name.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="name" id="inputName" placeholder="Student Name">
+        <% if (errors.stream){ %>
+            <%= errors.stream.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Stream">
+        <% if (errors.department){ %>
+            <%= errors.department.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department">
+        <% if (errors.batch){ %>
+            <%= errors.batch.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="batch" id="inputBatch" placeholder="Batch">
+        <% if (errors.dob){ %>
+            <%= errors.dob.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="dob" id="inputDOB" placeholder="Enter Date_Of_Birth">
+        <% if (errors.mobile_no){ %>
+            <%= errors.mobile_no.msg %>
+       <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
