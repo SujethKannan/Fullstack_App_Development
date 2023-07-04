@@ -7,7 +7,7 @@
 
     <h4>Add Student</h4>
     
-    <form action="/app/students/add" method="post">
+    <form action="/app/students/add" method="post"> 
         <% if (errors.name){ %>
             <%= errors.name.msg %>
        <% } %>
@@ -32,6 +32,12 @@
             <%= errors.mobile_no.msg %>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="age" id="inputAge" placeholder="Age">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="address" id="inputAddress" placeholder="Address">
+        <% if (errors.blood_group){ %>
+            <%= errors.blood_group.msg %>
+       <% } %>
+        <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

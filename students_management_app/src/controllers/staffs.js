@@ -9,7 +9,7 @@ module.exports={
     },
     getAddStaff:function(request,response){
         return response.render('staffs/addStaff',{errors:{}})
-    },
+    }, 
     addStaff: async function(request,response){
         try{
             const validationErrors = validationResult(request);
@@ -41,7 +41,7 @@ module.exports={
         }catch(error){
 
             console.log('[addStaffs Controller] error:',error);
-            return response.render('staffs/index')
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while adding staff'}})
 
         } 
     },
@@ -64,7 +64,8 @@ module.exports={
         return response.render('staffs/searchstaff',{data: staffData, errors:{}})
     }
         catch (error) {
-            
+            console.log('[searchStaff Controller] error:',error);
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while searching staff'}})            
         }
     },
 
@@ -108,7 +109,21 @@ module.exports={
         })
 
         } catch (error) {
-            
+            console.log('[updateStaff Controller] error:',error);
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while updating staff'}})            
+        }
+    },
+    deleteStaff : async function(request,response){
+        try {
+            const staffId = request.params.staff_id;
+            const result = await models.deleteStaffById(staffId);
+            if(result === constants.resultFlag.error){
+                return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'}})
+            }
+            return response.render('staffs/index',{errors:{opsError:'Staff Deleted Successfully'}})
+        } catch (error) {
+            console.log('[deleteStaff Controller] error:',error);
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'}})
         }
     }
 }

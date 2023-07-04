@@ -40,10 +40,18 @@
             <%= errors.email.msg %>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="Email" id="inputEmail" placeholder="Email" value="<%=data.EMAIL%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="age" id="inputAge" placeholder="Age" value="<%=data.AGE%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="address" id="inputAddress" placeholder="Address" value="<%=data.ADDRESS%>">
+        <% if (errors.blood_group){ %>
+            <%= errors.blood_group.msg %>
+       <% } %>
+        <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group" value="<%=data.BLOOD_GROUP%>">
         <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
         <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
         <button type="submit" class="btn btn-secondary">Update</button>
     </form>
+    <br>
+    <a href="/app/students/delete/<%= data.ID%>" class="btn btn-danger">Delete</a>
 </div>
 
 

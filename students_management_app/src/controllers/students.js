@@ -10,7 +10,7 @@ module.exports={
         return response.render('students/addStudent', {errors:{}})
     },
     addStudent: async function(request,response){
-        try{
+        try{ 
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
 
@@ -26,6 +26,9 @@ module.exports={
             const batch = request.body.batch;
             const dob = request.body.dob;
             const mobile_no = request.body.mobile_no;
+            const age = request.body.age;
+            const address = request.body.address;
+            const blood_group = request.body.blood_group;
 
             const data ={
                 name:name,
@@ -33,19 +36,32 @@ module.exports={
                 department:department,
                 batch:batch,
                 dob:dob,
-                mobile_no:mobile_no
+                mobile_no:mobile_no,
             }
 
             const result = await models.insertStudent(data);
-            if(result===constants.resultFlag.success){
-               return  response.render('students/index',{errors:{}})
+            if(result===constants.resultFlag.error){
+               return response.render('students/addstudent',{errors:{}})
             }
-              return response.render('students/addStudent', {errors:{}})
+              const studentID= result.result.ID;
+
+              const addlData = {
+                student_id: studentID,
+                age:age,
+                address:address,
+                blood_group:blood_group
+            }
+
+              const addlResult = await models.insertStudentDetail(addlData);
+              if(addlResult===constants.resultFlag.error){
+               return response.render('students/addstudent',{errors:{}})
+              }
+               return response.render('students/index', {errors:{}})
 
         }catch(error){
 
             console.log('[addStudent Controller] error:',error);
-            return response.render('students/index')
+            return response.render('students/index',{errors:{opsError:'Something Went wrong while adding student'}})
 
         } 
     },
@@ -68,7 +84,8 @@ module.exports={
         return response.render('students/searchstudent',{data: studentData, errors:{} })
     }
         catch (error) {
-            
+            console.log('[searchStudent Controller] error:',error);
+            return response.render('students/index',{errors:{opsError:'Something Went wrong while searching student'}})            
         }
     },
 
@@ -91,7 +108,10 @@ module.exports={
             const batch = request.body.batch;
             const dob = request.body.dob;
             const mobile_no = request.body.mobile_no;
-            const email = request.body.email
+            const email = request.body.email;
+            const age = request.body.age;
+            const address = request.body.address;
+            const blood_group = request.body.blood_group;
 
             const data ={
                 name:name,
@@ -102,8 +122,17 @@ module.exports={
                 mobile_no:mobile_no,
                 email:email
             }
+
+            const addlData = {
+                student_id:id,
+                age:age,
+                address:address,
+                blood_group:blood_group
+            }
+
         const updatedresult = await models.getStudentById(data,id);
-        if(!updatedresult === constants.resultFlag.error){
+        const updatedaddlResult = await models.updateStudentDetail(addlData,id);
+        if(updatedresult === constants.resultFlag.error){
             return response.render('students/searchStudent',{
                 errors : {updateError: 'unable to update data'},
                 data : studentData
@@ -116,7 +145,21 @@ module.exports={
         })
 
         } catch (error) {
-            
+            console.log('[updateStudent Controller] error:',error);
+            return response.render('students/index',{errors:{opsError:'Something Went wrong while updating student details'}})
+        }
+    },
+    deleteStudent : async function(request,response){
+        try {
+            const studentId = request.params.student_id;
+            const result = await models.deleteStudentsById(studentId);
+            if(result === constants.resultFlag.error){
+                return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'}})
+            }
+            return response.render('students/index',{errors:{opsError:'Student Deleted Successfully'}})
+        } catch (error) {
+            console.log('[deleteStudent Controller] error:',error);
+            return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'}})
         }
     }
 }
