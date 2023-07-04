@@ -96,7 +96,7 @@ module.exports={
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
             if(!validationErrors.isEmpty()){
-                return response.render('students/searchStudent',{
+                return response.render('students/searchstudent',{
                     errors : validationErrors.mapped(),
                     data : studentData
                 })
