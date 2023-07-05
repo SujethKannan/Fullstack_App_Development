@@ -76,7 +76,7 @@ module.exports={
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
             if(!validationErrors.isEmpty()){
-                return response.render('staffs/searchStaff',{
+                return response.render('staffs/searchstaff',{
                     errors : validationErrors.mapped(),
                     data : staffData
                 })
@@ -95,15 +95,15 @@ module.exports={
                 mobile_no:mobile_no,
                 email:email
             }
-        const updatedresult = await models.getStaffById(data,id);
+        const updatedresult = await models.updateStaffById(data,id);
         if(!updatedresult === constants.resultFlag.error){
-            return response.render('staffs/searchStaff',{
+            return response.render('staffs/searchstaff',{
                 errors : {updateError: 'unable to update data'},
                 data : staffData
             })
         }
         const updatedstaffData = await models.getStaffById(id);        
-        return response.render('staffs/searchStaff',{
+        return response.render('staffs/searchstaff',{
             errors : {successmsg : 'Data updated successfully'},
             data : updatedstaffData
         })

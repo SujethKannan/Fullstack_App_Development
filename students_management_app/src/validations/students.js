@@ -6,9 +6,9 @@ module.exports = {
         check('stream').isLength({min : 1}).withMessage('*Stream is Mandatory'),
         check('department').isLength({min : 1}).withMessage('*Department is Mandatory'),
         check('batch').isLength({min : 1}).withMessage('*Batch is Mandatory'),
-        check('dob').isLength({min : 1}).withMessage('*Date Of Birth is Mandatory'),
-        check('mobile_no').isLength({min : 10,max : 10}).withMessage('*Mobile Number Should Be of 10 Digit Number'),
-        check('mobile_no').isNumeric().withMessage('*Mobile Number Should be of 10 Digit Number'),
+        check('dob').isLength({min : 1}).withMessage('*Dob is Mandatory'),
+        check('mobile_no').isLength({min : 10, max: 10}).withMessage('*Mobile number is Mandatory and should be of 10 digits'),
+        check('mobile_no').isNumeric().withMessage('*Mobile number Should be of 10 Digit Number'),
         check('blood_group').isLength({min : 1}).withMessage('*Blood_group is Mandatory')
     ],
     searchStudent:[
@@ -21,9 +21,10 @@ module.exports = {
         check('stream').isLength({min : 1}).withMessage('*Stream is Mandatory'),
         check('department').isLength({min : 1}).withMessage('*Department is Mandatory'),
         check('batch').isLength({min : 1}).withMessage('*Batch is Mandatory'),
-        check('dob').isLength({min : 1}).withMessage('*Date Of Birth is Mandatory'),
-        check('mobile_no').isLength({min : 10,max : 10}).withMessage('*Mobile Number Should Be of 10 Digit Number'),
-        check('mobile_no').isNumeric().withMessage('*Mobile Number Should be of 10 Digit Number'),
+        check('dob').isLength({min : 1}).withMessage('*Dob is Mandatory'),
+        check('mobile_no').isLength({min : 10, max: 10}).withMessage('*Mobile number is Mandatory and should be of 10 digits'),
+        check('mobile_no').isNumeric().withMessage('*Mobile_No Should be of 10 Digit Number'),
         check ('email').isLength({min : 1}).withMessage('*Mail_id is Mandatory')
+
     ]
 }

@@ -130,16 +130,16 @@ module.exports={
                 blood_group:blood_group
             }
 
-        const updatedresult = await models.getStudentById(data,id);
+        const updatedresult = await models.updateStudentById(data,id);
         const updatedaddlResult = await models.updateStudentDetail(addlData,id);
         if(updatedresult === constants.resultFlag.error){
-            return response.render('students/searchStudent',{
+            return response.render('students/searchstudent',{
                 errors : {updateError: 'unable to update data'},
                 data : studentData
             })
         }
         const updatedstudentData = await models.getStudentById(id);        
-        return response.render('students/searchStudent',{
+        return response.render('students/searchstudent',{
             errors : {successmsg : 'Data updated successfully'},
             data : updatedstudentData
         })
