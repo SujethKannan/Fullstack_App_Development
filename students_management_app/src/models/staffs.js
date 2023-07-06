@@ -50,14 +50,14 @@ module.exports={
                     console.log('[insertStaffs Model]:unable to insert data',err);
                     return reject('error')
                 }
-                resolve('success')
+                return resolve('success')
             }
         )
     })
     },
     updateStaffById:function(data,id){
         return new Promise((resolve,reject)=>{
-            const sql= 'UPDATE STAFFS SET NAME=?,SUBJECT=?,DEPARTMENT=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}';
+            const sql= `UPDATE STAFFS SET NAME=?,SUBJECT=?,DEPARTMENT=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}`;
             db.appDatabase.run(
                 sql,
                 [data.name,data.subject,data.department,data.mobile_no,data.email,id],
@@ -66,7 +66,7 @@ module.exports={
                         console.log('[updateStaffsByIdModel]:unable to update data',err);
                          return reject('error')
                     }
-                    resolve('success')
+                    return resolve('success')
                 }
             )
         })
@@ -85,7 +85,7 @@ module.exports={
                         console.log('[deleteStaffsByIdModel]:unable to delete data',err);
                          return reject('error')
                     }
-                    resolve('success')
+                    return resolve('success')
                 }
             )
         })

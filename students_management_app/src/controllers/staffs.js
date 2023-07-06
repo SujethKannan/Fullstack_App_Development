@@ -83,7 +83,7 @@ module.exports={
             }
 
             const name = request.body.name;
-            const subject = request.body.stream;
+            const subject = request.body.subject;
             const department = request.body.department;
             const mobile_no = request.body.mobile_no;
             const email = request.body.email

@@ -81,7 +81,7 @@ module.exports={
     },
     updateStudentsById:function(data,id){
         return new Promise((resolve,reject)=>{
-            const sql= 'UPDATE STUDENTS SET NAME=?,STREAM=?,DEPARTMENT=?,BATCH=?,DOB=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}';
+            const sql= `UPDATE STUDENTS SET NAME=?,STREAM=?,DEPARTMENT=?,BATCH=?,DOB=?,MOBILE_NO=?,EMAIL=? WHERE ID=? AND STATUS=${constants.status.active}`;
             db.appDatabase.run(
                 sql,
                 [data.name,data.stream,data.department,data.batch,data.dob,data.mobile_no,data.email,id],
@@ -90,7 +90,7 @@ module.exports={
                         console.log('[updateStudentsByIdModel]:unable to update data',err);
                          return reject('error')
                     }
-                    resolve('success')
+                    return resolve('success')
                 }
             )
         })
@@ -109,7 +109,7 @@ module.exports={
                         console.log('[deleteStudentsByIdModel]:unable to delete data',err);
                          return reject('error')
                     }
-                    resolve('success')
+                    return resolve('success')
                 }
             )
         })
@@ -127,7 +127,7 @@ module.exports={
                     console.log('[insertStudentsDtlsModel]:unable to insert data',err);
                     return reject('error')
                     }
-                resolve('success')
+                return resolve('success')
             }
         )
     })
@@ -146,7 +146,7 @@ module.exports={
                         console.log('[updateStudentsDtlsById Model]:unable to update data',err);
                         return reject('error')                
                     }
-                    resolve('success')
+                    return resolve('success')
                 }
             )
         })

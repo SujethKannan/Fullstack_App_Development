@@ -31,7 +31,7 @@
         <% if (errors.email){ %>
             <%= errors.email.msg %>
        <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="Email" id="inputEmail" placeholder="Email" value="<%=data.EMAIL%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="email" id="inputEmail" placeholder="Email" value="<%=data.EMAIL%>">
         <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
         <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
         <button type="submit" class="btn btn-secondary">Update</button>
