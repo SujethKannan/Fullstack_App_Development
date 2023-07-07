@@ -125,5 +125,15 @@ module.exports={
             console.log('[deleteStaff Controller] error:',error);
             return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'}})
         }
+    },
+    getStaffsDetails : async function(request,response){
+        try {
+            const data = await models.getStaffs();
+            return response.render('staffs/details-page',{data:data});
+        } catch (error) {
+            console.log('[getStaffsDetails Controller] error:',error);
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while fetching staffs data'}});
+            
+        }
     }
 }

@@ -1,0 +1,32 @@
+<%- include('../header')  %>   
+   
+<h3>STUDENTS SECTION</h3>
+<table>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>STREAM</th>
+      <th>DEPARTMENT</th>
+      <th>BATCH</th>
+      <th>MOBILE_NO</th>
+      <th>EMAIL</th>
+      <th>BLOOD_GROUP</th>
+    </tr>
+    <% for (const d of data) { %>
+    <tr>
+      <td><%=d.STUDENT_ID%></td>
+      <td><%=d.NAME%></td>
+      <td><%=d.STREAM%></td>
+      <td><%=d.DEPARTMENT%></td>
+      <td><%=d.BATCH%></td>
+      <td><%=d.EMAIL%></td>
+      <td><%=d.BLOOD_GROUP%></td>
+    </tr>
+    <% } %>
+  </table>
+  <a class ="btn btn-secondary" href="/app/students">Back</Details></a>
+  
+
+
+<%- include('../footer')  %>
+ 

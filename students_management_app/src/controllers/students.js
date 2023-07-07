@@ -161,5 +161,16 @@ module.exports={
             console.log('[deleteStudent Controller] error:',error);
             return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'}})
         }
+    },
+    getStudentData : async function(request,response){
+        try {
+            const data = await models.getStudentsdata();
+            return response.render('students/details-page',{data:data});
+        } catch (error) {
+            console.log('[getStudentData Controller] error:',error);
+            return response.render('students/index',{errors:{opsError:'Something Went wrong while fetching students data'}});
+            
+        }
     }
+
 }
