@@ -1,9 +1,85 @@
 <%- include('../header')  %>   
-   
 
-  <a class ="btn btn-secondary" href="/app/students">Back</a>
+<br>
+<div class ="Container">
+  <h3>Settings Page</h3> 
   
+  <form action="/app/settings/department/add" method="post">
+    <% if (message.department){ %>
+      <%= message.department.msg %>
+ <% } %>
+    <% if (message.errDept){ %>
+  <%= message.errDept %>
+<% } %> 
+    <% if (message.succDept){ %>
+  <%= message.succDept %>
+<% } %>
+  <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Add New Department">
+  <button class="btn btn-primary" type="submit">Add</button>
+  </form>
+  <br>
 
+  <form action="/app/settings/department/delete" method="post">
+    <% if (message.deleteDepartment){ %>
+      <%= message.deleteDepartment.msg %>
+ <% } %>
+    <% if (message.errDeleteDept){ %>
+  <%= message.errDeleteDept %>
+<% } %> 
+    <% if (message.succDeleteDept){ %>
+  <%= message.succDeleteDept %>
+<% } %>
+  <input class="form-control shadow-none mb-3 phText" type="text" name="deleteDepartment" id="inputDepartment" placeholder="Delete a Department" list="Departments">
+  <datalist id="Departments">
+  <% for(const dept of departmentData) { %>
+  <option value="<%=dept.ID%>">
+    <%=dept.NAME%>
+  </option>
+  <% }%>
+  </datalist>
+  <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
+  <br>
+
+
+  <form action="/app/settings/stream/add" method="post">
+    <% if (message.stream){ %>
+      <%= message.stream.msg %>
+ <% } %>
+    <% if (message.errStream){ %>
+  <%= message.errStream %>
+<% } %> 
+    <% if (message.succStream){ %>
+  <%= message.succStream %>
+<% } %>
+    <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Add New Stream">
+    <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+    <form action="/app/settings/stream/delete" method="post">
+      <% if (message.deleteStream){ %>
+        <%= message.deleteStream.msg %>
+   <% } %>
+      <% if (message.errDeleteStream){ %>
+    <%= message.errDeleteStream %>
+  <% } %> 
+      <% if (message.succDeleteStream){ %>
+    <%= message.succDeleteStream %>
+  <% } %>
+      <input class="form-control shadow-none mb-3 phText" type="text" name="deleteStream" id="inputStream" placeholder="Delete a Stream" list="Streams">
+      <datalist id="Streams">
+    <% for(const stream of streamData) { %>
+    <option value="<%=stream.ID%>">
+      <%=stream.NAME%>
+    </option>
+    <% }%>
+    </datalist>
+      <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
+  
+    <br>
+<a class ="btn btn-secondary" href="/app/home">Home</a>
+</div>
 
   <%- include('../footer')  %>
  

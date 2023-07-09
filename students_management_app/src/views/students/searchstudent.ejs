@@ -19,11 +19,27 @@
         <% if (errors.stream){ %>
             <%= errors.stream.msg %>
        <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Stream" value="<%=data.STREAM%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Stream" value="<%=data.STREAM%>" list="Streams">
+        <datalist id="Streams">
+            <% for(const stream of streamData) { %>
+            <option value="<%=stream.NAME%>">
+              <%=stream.NAME%>
+            </option>
+            <% }%>
+            </datalist>
+
         <% if (errors.department){ %>
             <%= errors.department.msg %>
        <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" value="<%=data.DEPARTMENT%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" value="<%=data.DEPARTMENT%>" list="Departments">
+        <datalist id="Departments">
+            <% for(const dept of departmentData) { %>
+            <option value="<%=dept.NAME%>">
+              <%=dept.NAME%>
+            </option>
+            <% }%>
+            </datalist>
+
         <% if (errors.batch){ %>
             <%= errors.batch.msg %>
        <% } %>
@@ -45,7 +61,12 @@
         <% if (errors.blood_group){ %>
             <%= errors.blood_group.msg %>
        <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group" value="<%=data.BLOOD_GROUP%>">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group" value="<%=data.BLOOD_GROUP%>" list="BloodGroup">
+        <datalist id="BloodGroup"
+        <% for(const grp of bloodGroup) { %>
+       <option value="<%=grp.group%>">grp.group</option>
+        <% }%>
+  </datalist>
         <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
         <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
         <button type="submit" class="btn btn-secondary">Update</button>

@@ -1,22 +1,31 @@
-const models= require('../models/students');
-const constants = require('../config/constants')
-const {validationResult} = require('express-validator')
+const studentsmodels= require('../models/students');
+const settingsmodels= require('../models/settings');
+const constants = require('../config/constants');
+const {validationResult} = require('express-validator');
+const {bloodGroup} = require('../config/studentDataConfig')
 
 module.exports={
     getIndex:function(request,response){
        return  response.render('students/index', {errors:{}})
     },
-    getAddStudent:function(request,response){
-        return response.render('students/addStudent', {errors:{}})
+    getAddStudent:async function(request,response){
+        const departmentData = await getAllDepartments();
+        const streamData = await getAllStreams();
+        return response.render('students/addStudent', {errors:{}, bloodGroup:bloodGroup, departmentData:departmentData , streamData:streamData})
     },
     addStudent: async function(request,response){
         try{ 
+            const departmentData = await getAllDepartments();
+            const streamData = await getAllStreams();
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
 
             if(!validationErrors.isEmpty()){
                 return response.render('students/addStudent',{
-                    errors : validationErrors.mapped()
+                    errors : validationErrors.mapped(),
+                    bloodGroup:bloodGroup,
+                    departmentData:departmentData , 
+                    streamData:streamData
                 })
             }
 
@@ -39,9 +48,9 @@ module.exports={
                 mobile_no:mobile_no,
             }
 
-            const result = await models.insertStudent(data);
+            const result = await studentsmodels.insertStudent(data);
             if(result===constants.resultFlag.error){
-               return response.render('students/addstudent',{errors:{}})
+               return response.render('students/addstudent',{errors:{},bloodGroup:bloodGroup,departmentData:departmentData , streamData:streamData})
             }
               const studentID= result.result.ID;
 
@@ -52,9 +61,9 @@ module.exports={
                 blood_group:blood_group
             }
 
-              const addlResult = await models.insertStudentDetail(addlData);
+              const addlResult = await studentsmodels.insertStudentDetail(addlData);
               if(addlResult===constants.resultFlag.error){
-               return response.render('students/addstudent',{errors:{}})
+               return response.render('students/addstudent',{errors:{},bloodGroup:bloodGroup, departmentData:departmentData , streamData:streamData})
               }
                return response.render('students/index', {errors:{}})
 
@@ -68,6 +77,8 @@ module.exports={
 
     searchStudent : async function(request,response){
         try {
+            const departmentData = await getAllDepartments();
+            const streamData = await getAllStreams();
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
             if(!validationErrors.isEmpty()){
@@ -75,13 +86,13 @@ module.exports={
                     errors : validationErrors.mapped()})
             }
             const studentId = request.body.student_id;
-            const studentData = await models.getStudentById(studentId)
+            const studentData = await studentsmodels.getStudentById(studentId)
          if(!studentData){
             return response.render('students/index',{
                 errors : {no_Data:'Students data does not exists'}})
 
         }
-        return response.render('students/searchstudent',{data: studentData, errors:{} })
+        return response.render('students/searchstudent',{data: studentData, errors:{},bloodGroup:bloodGroup,departmentData:departmentData,streamData:streamData })
     }
         catch (error) {
             console.log('[searchStudent Controller] error:',error);
@@ -91,14 +102,19 @@ module.exports={
 
     updateStudent : async function(request,response){
         try {
+            const departmentData = await getAllDepartments();
+            const streamData = await getAllStreams();
             const id = request.body.id;
-            const studentData = await models.getStudentById(id);
+            const studentData = await studentsmodels.getStudentById(id);
             const validationErrors = validationResult(request);
             // console.log('validationErrors >>>',validationErrors);
             if(!validationErrors.isEmpty()){
                 return response.render('students/searchstudent',{
                     errors : validationErrors.mapped(),
-                    data : studentData
+                    data : studentData,
+                    bloodGroup:bloodGroup,
+                    departmentData:departmentData,
+                    streamData:streamData
                 })
             }
 
@@ -130,18 +146,24 @@ module.exports={
                 blood_group:blood_group
             }
 
-        const updatedresult = await models.updateStudentsById(data,id);
-        const updatedaddlResult = await models.updateStudentsDtlsById(addlData,id);
+        const updatedresult = await studentsmodels.updateStudentsById(data,id);
+        const updatedaddlResult = await studentsmodels.updateStudentsDtlsById(addlData,id);
         if(updatedresult === constants.resultFlag.error){
             return response.render('students/searchstudent',{
                 errors : {updateError: 'unable to update data'},
-                data : studentData
+                data : studentData,
+                bloodGroup:bloodGroup,
+                departmentData:departmentData,
+                streamData:streamData
             })
         }
-        const updatedstudentData = await models.getStudentById(id);        
+        const updatedstudentData = await studentsmodels.getStudentById(id);        
         return response.render('students/searchstudent',{
             errors : {successmsg : 'Data updated successfully'},
-            data : updatedstudentData
+            data : updatedstudentData,
+            bloodGroup:bloodGroup,
+            departmentData:departmentData,
+            streamData:streamData
         })
 
         } catch (error) {
@@ -152,7 +174,7 @@ module.exports={
     deleteStudent : async function(request,response){
         try {
             const studentId = request.params.student_id;
-            const result = await models.deleteStudentsById(studentId);
+            const result = await studentsmodels.deleteStudentsById(studentId);
             if(result === constants.resultFlag.error){
                 return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'}})
             }
@@ -162,9 +184,9 @@ module.exports={
             return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'}})
         }
     },
-    getStudentData : async function(request,response){
+    getStudentsData : async function(request,response){
         try {
-            const data = await models.getStudentsdata();
+            const data = await studentsmodels.getStudentsdata();
             return response.render('students/details-page',{data:data});
         } catch (error) {
             console.log('[getStudentData Controller] error:',error);
@@ -174,3 +196,21 @@ module.exports={
     }
 
 }
+
+const getAllDepartments = async ()=>{
+    try {
+        return await settingsmodels.getDepartment();
+    } catch (error) {
+        console.log('[getAllDepartments] error:',error);
+        return null;        
+    }
+ }
+
+ const getAllStreams = async ()=>{
+    try {
+        return await settingsmodels.getStream();
+    } catch (error) {
+        console.log('[getAllStreams] error:',error);
+        return null;        
+    }
+ }

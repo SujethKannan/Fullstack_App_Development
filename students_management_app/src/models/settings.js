@@ -37,7 +37,7 @@ module.exports={
     },
     deleteDepartment:function(id){
         return new Promise((resolve,reject)=>{
-            const sql = `UPDATE DEPARTMENT SET STATUS = ${constants.resultFlag.active} WHERE ID = ?`
+            const sql = `UPDATE DEPARTMENT SET STATUS = ${constants.status.inactive} WHERE ID = ?`
             db.appDatabase.run(
                 sql,
                 [id],
@@ -85,7 +85,7 @@ module.exports={
     },
     deleteStream:function(id){
         return new Promise((resolve,reject)=>{
-            const sql = `UPDATE STREAM SET STATUS = ${constants.resultFlag.active} WHERE ID = ?`
+            const sql = `UPDATE STREAM SET STATUS = ${constants.status.inactive} WHERE ID = ?`
             db.appDatabase.run(
                 sql,
                 [id],

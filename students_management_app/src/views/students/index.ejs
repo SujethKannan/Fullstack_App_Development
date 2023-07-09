@@ -1,22 +1,65 @@
 <%- include('../header')  %>   
    
 <h3>STUDENTS SECTION</h3>
+<div class="container">
+     <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Add a Student</h5>
+                <% if (errors.student_id){ %>
+                    <%= errors.student_id.msg %>
+               <% } %><% if (errors.no_Data){ %>
+                    <%= errors.no_Data %>
+               <% } %>
+               <% if (errors.opsError){ %>
+                  <%= errors.opsError %>
+             <% } %>
+             <br>
+                <a class="card-link" href="/app/students/add">Click to Add a Student</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Search a Student</h5>
+                <form action="/app/students/search" method="post">
+                    <% if (errors.student_id){ %>
+                          <%= errors.student_id.msg %>
+                     <% } %>
+                     <% if (errors.no_Data){ %>
+                         <%= errors.no_Data %>
+                    <% } %>
+                    <% if (errors.opsError){ %>
+                       <%= errors.opsError %>
+                  <% } %>
+                  <input type="text" class="form-control shadow-none mb-3 phText" name="student_id" placeholder="Enter student_id to search">
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">View Students All Details</h5>
+                <a class="card-link" href="/app/students/details">Click to View Students Details</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Export Student Details</h5>
+                <a class="card-link">Click to Export</a>
+              </div>
+            </div>
+          </div>
+        </div> 
+</div> 
 <br>
-<a class="btn btn-primary" href="/app/students/add">Add a Student</a>
-<form action="/app/students/search" method="post">
-      <% if (errors.student_id){ %>
-            <%= errors.student_id.msg %>
-       <% } %>
-    <input type="text" class="form-control shadow-none mb-3 phText" name="student_id" placeholder="Enter student_id to search">
-    <% if (errors.no_Data){ %>
-        <%= errors.no_Data %>
-   <% } %>
-   <% if (errors.opsError){ %>
-      <%= errors.opsError %>
- <% } %>
-</form>
-<a class="btn btn-secondary" href="/app/students/details">View Students Details</a>
-
 
 <%- include('../footer')  %>
  

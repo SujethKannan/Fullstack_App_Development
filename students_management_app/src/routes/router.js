@@ -5,6 +5,7 @@ const staffsController=require('../controllers/staffs');
 const settingsController=require('../controllers/settings');
 const studentsValidators = require('../validations/students');
 const staffsValidators = require('../validations/staffs');
+const settingsValidators = require('../validations/settings')
 
 /**
  * Homepage Router
@@ -21,7 +22,7 @@ Router.post('/students/add', studentsValidators.addStudent, studentsController.a
 Router.post('/students/search', studentsValidators.searchStudent, studentsController.searchStudent)
 Router.post('/students/update', studentsValidators.updateStudent, studentsController.updateStudent)
 Router.get('/students/delete/:student_id',studentsController.deleteStudent)
-Router.get('/students/details',studentsController.getStudentData)
+Router.get('/students/details',studentsController.getStudentsData)
 
 /**
  * Staffs Router
@@ -38,6 +39,10 @@ Router.get('/staffs/details',staffsController.getStaffsDetails)
  * Settings Router
  **/ 
 Router.get('/settings',settingsController.getIndex)
+Router.post('/settings/department/add',settingsValidators.addDepartment,settingsController.addDepartment)
+Router.post('/settings/stream/add',settingsValidators.addStream,settingsController.addStream)
+Router.post('/settings/department/delete',settingsValidators.deleteDepartment,settingsController.deleteDepartment)
+Router.post('/settings/stream/delete',settingsValidators.deleteStream,settingsController.deleteStream)
 
 
 module.exports=Router 
