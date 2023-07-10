@@ -1,21 +1,66 @@
 <%- include('../header')  %>   
-   
-<h3>STAFFS SECTION</h3>
-<br>
-<a class="btn btn-primary" href="/app/staffs/add">Add a Staff</a>
-<form action="/app/staffs/search" method="post">
-    <% if (errors.staff_id){ %>
-        <%= errors.staff_id.msg %>
-   <% } %>
-    <input type="text" class="form-control shadow-none mb-3 phText" name="staff_id" placeholder="Enter staff_id to search">
-    <% if (errors.no_Data){ %>
-        <%= errors.no_Data %>
-   <% } %>
-   <% if (errors.opsError){ %>
-    <%= errors.opsError %>
-<% } %>
-</form>
-<a class="btn btn-secondary" href="/app/staffs/details">View Staffs Details</a>
+   <div class="container">
+
+    <h3>STAFFS SECTION</h3>
+
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add a Staff</h5>
+              <% if (errors.staff_id){ %>
+                <%= errors.staff_id.msg %>
+           <% } %>
+           <% if (errors.no_Data){ %>
+            <%= errors.no_Data %>
+        <% } %>
+        <% if (errors.opsError){ %>
+        <%= errors.opsError %>
+        <% } %>
+           <br>
+           <a class="card-link" href="/app/staffs/add">Click to Add a Staff</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search a Staff</h5>
+              <form action="/app/staffs/search" method="post">
+                <% if (errors.staff_id){ %>
+                    <%= errors.staff_id.msg %>
+               <% } %>
+               <% if (errors.no_Data){ %>
+                <%= errors.no_Data %>
+            <% } %>
+            <% if (errors.opsError){ %>
+            <%= errors.opsError %>
+            <% } %>
+                <input type="text" class="form-control shadow-none mb-3 phText" name="staff_id" placeholder="Enter staff_id to search">  
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">View Staffs All Details</h5>
+              <a class="card-link" href="/app/staffs/details" >Click to View Staffs Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Export Staff Details</h5>
+              <a class="card-link">Click to Export</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+   </div>
 
 
 

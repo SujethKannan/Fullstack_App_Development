@@ -34,9 +34,9 @@ module.exports={
 
             const result = await models.insertStaff(data);
             if(result===constants.resultFlag.success){
-               return  response.render('staffs/index',{errors:{}})
+               return  response.render('staffs/index',{errors:{opsError:'Staff Added Successfully'}})
             }
-              return response.render('staffs/addStaff',{errors:{}})
+              return response.render('staffs/index',{errors:{opsError:'Something Went wrong while adding staff'}})
 
         }catch(error){
 
