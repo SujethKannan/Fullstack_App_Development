@@ -65,7 +65,7 @@ module.exports={
               if(addlResult===constants.resultFlag.error){
                return response.render('students/addstudent',{errors:{},bloodGroup:bloodGroup, departmentData:departmentData , streamData:streamData})
               }
-               return response.render('students/index', {errors:{}})
+               return response.render('students/index', {errors:{opsError:'Data Added Successfully'}})
 
         }catch(error){
 
