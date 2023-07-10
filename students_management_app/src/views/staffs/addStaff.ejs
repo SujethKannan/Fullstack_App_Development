@@ -19,7 +19,15 @@
         <% if (errors.department){ %>
             <%= errors.department.msg %>
        <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department">
+        <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" list="Departments">
+        <datalist id="Departments">
+            <% for(const dept of departmentData) { %>
+            <option value="<%=dept.NAME%>">
+              <%=dept.NAME%>
+            </option>
+            <% }%>
+            </datalist>
+
         <% if (errors.mobile_no){ %>
             <%= errors.mobile_no.msg %>
        <% } %>
