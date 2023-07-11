@@ -1,3 +1,7 @@
+body {
+    background-color: aqua;
+}
+
 .bg-light {
     background-color : orange !important;
 }

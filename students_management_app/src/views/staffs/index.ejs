@@ -64,6 +64,15 @@
         </div>
       </div> 
    </div>
+
+   <% if(fileName){%>
+    <a href="/public/exports/<%=fileName%>" download="<%=fileName%>" id="download-link"></a>
+  <% } %>
+  
+  <script>
+    document.getElementById('download-link').click()
+  </script>
+  
   
 
 <%- include('../footer')  %>

@@ -94,7 +94,7 @@ module.exports={
     }
         catch (error) {
             console.log('[searchStudent Controller] error:',error);
-            return response.render('students/index',{errors:{opsError:'Something Went wrong while searching student'},fileName:null})            
+            return response.render('students/index',{errors:{opsError1:'Something Went wrong while searching student'},fileName:null})            
         }
     },
 

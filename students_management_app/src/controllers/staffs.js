@@ -10,7 +10,7 @@ const fs = require('fs');
 
 module.exports={
     getIndex:function(request,response){
-       return  response.render('staffs/index',{errors:{}})
+       return  response.render('staffs/index',{errors:{},fileName:null})
     },
     getAddStaff: async function(request,response){
         const departmentData = await getAllDepartments();
@@ -49,7 +49,7 @@ module.exports={
         }catch(error){
 
             console.log('[addStaffs Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while adding staff'}})
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while adding staff'},fileName:null})
 
         } 
     },
@@ -61,20 +61,23 @@ module.exports={
             // console.log('validationErrors >>>',validationErrors);
             if(!validationErrors.isEmpty()){
                 return response.render('staffs/index',{
-                    errors : validationErrors.mapped()})
+                    errors : validationErrors.mapped(),
+                    fileName:null
+                })
             }
             const staffId = request.body.staff_id;
             const staffData = await staffsmodels.getStaffById(staffId)
          if(!staffData){
             return response.render('staffs/index',{
-                errors : {no_Data:'Staff data does not exists'}})
-
+                errors : {no_Data:'Staff data does not exists'},
+                fileName:null
+            })
         }
         return response.render('staffs/searchstaff',{data: staffData, errors:{}, departmentData:departmentData})
     }
         catch (error) {
             console.log('[searchStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while searching staff'}})            
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while searching staff'},fileName:null})            
         }
     },
 
@@ -123,7 +126,7 @@ module.exports={
 
         } catch (error) {
             console.log('[updateStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while updating staff'}})            
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while updating staff'},fileName:null})            
         }
     },
     deleteStaff : async function(request,response){
@@ -131,12 +134,12 @@ module.exports={
             const staffId = request.params.staff_id;
             const result = await staffsmodels.deleteStaffById(staffId);
             if(result === constants.resultFlag.error){
-                return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'}})
+                return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'},fileName:null})
             }
-            return response.render('staffs/index',{errors:{opsError:'Staff Deleted Successfully'}})
+            return response.render('staffs/index',{errors:{opsError:'Staff Deleted Successfully'},fileName:null})
         } catch (error) {
             console.log('[deleteStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'}})
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'},fileName:null})
         }
     },
     getStaffsDetails : async function(request,response){
@@ -145,7 +148,7 @@ module.exports={
             return response.render('staffs/details-page',{data:data});
         } catch (error) {
             console.log('[getStaffsDetails Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while fetching staffs data'}});
+            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while fetching staffs data'},fileName:null});
             
         }
     },

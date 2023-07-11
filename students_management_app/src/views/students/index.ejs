@@ -11,8 +11,6 @@
                 <h5 class="card-title">Add a Student</h5>
                 <% if (errors.student_id){ %>
                     <%= errors.student_id.msg %>
-               <% } %><% if (errors.no_Data){ %>
-                    <%= errors.no_Data %>
                <% } %>
                <% if (errors.opsError){ %>
                   <%= errors.opsError %>
@@ -33,8 +31,8 @@
                      <% if (errors.no_Data){ %>
                          <%= errors.no_Data %>
                     <% } %>
-                    <% if (errors.opsError){ %>
-                       <%= errors.opsError %>
+                    <% if (errors.opsError2){ %>
+                       <%= errors.opsError2 %>
                   <% } %>
                   <input type="text" class="form-control shadow-none mb-3 phText" name="student_id" placeholder="Enter student_id to search">
               </form>
