@@ -16,6 +16,7 @@ app.set('views',path.resolve(__dirname,'views'))
 
 app.use(express.urlencoded({extended:true}));
 app.use(bodyparser.urlencoded({extended:true}));
+app.use('/public',express.static(__dirname + 'public'))
 
 
 app.use('/app',Router);

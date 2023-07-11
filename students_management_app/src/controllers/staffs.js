@@ -1,7 +1,11 @@
 const staffsmodels= require('../models/staffs');
 const settingsmodels= require('../models/settings');
-const constants = require('../config/constants')
-const {validationResult} = require('express-validator')
+const constants = require('../config/constants');
+const {validationResult} = require('express-validator');
+const fastcsv = require('fast-csv');
+const moment = require ('moment');
+const path = require('path');
+const fs = require('fs');
 
 
 module.exports={
@@ -144,7 +148,26 @@ module.exports={
             return response.render('staffs/index',{errors:{opsError:'Something Went wrong while fetching staffs data'}});
             
         }
+    },
+    exportStaffsData : async function(request,response){
+    try {
+        const data = await staffsmodels.getStaffs();
+        const exportDir = path.resolve(__dirname,'../','public/exports');
+        const time = moment().utcOffset('+5:30').format('YYYYMMDDHHmmss');
+        const fileName = 'StaffData_' + String(time) + '.csv';
+        const endpath = exportDir + '/' + fileName;
+        //console.log(data);
+        const ws = fs.createWriteStream(endpath);
+        fastcsv.write(
+            data,
+            {headers:true}
+        ).on('finish',()=>{
+            return response.render('staffs/index',{errors:{},fileName:fileName})
+        }).pipe(ws)
+    } catch (error) {
+        return response.render('staffs/index',{errors:{exportError:'Something Went wrong while exporting staffs report'},fileName:null});
     }
+}
 }
 
 const getAllDepartments = async ()=>{

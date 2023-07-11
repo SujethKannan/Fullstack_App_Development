@@ -23,6 +23,7 @@ Router.post('/students/search', studentsValidators.searchStudent, studentsContro
 Router.post('/students/update', studentsValidators.updateStudent, studentsController.updateStudent)
 Router.get('/students/delete/:student_id',studentsController.deleteStudent)
 Router.get('/students/details',studentsController.getStudentsData)
+Router.get('/students/export',studentsController.exportStudentsData)
 
 /**
  * Staffs Router
@@ -34,6 +35,7 @@ Router.post('/staffs/search', staffsValidators.searchStaff, staffsController.sea
 Router.post('/staffs/update', staffsValidators.updateStaff, staffsController.updateStaff)
 Router.get('/staffs/delete/:staff_id',staffsController.deleteStaff)
 Router.get('/staffs/details',staffsController.getStaffsDetails)
+Router.get('/staffs/export',staffsController.exportStaffsData)
 
 /**
  * Settings Router

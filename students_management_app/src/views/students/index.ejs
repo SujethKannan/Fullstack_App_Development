@@ -55,13 +55,23 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Export Student Details</h5>
-                <a class="card-link">Click to Export</a>
+                <% if (errors.exportError){ %>
+                  <%= errors.exportError %>
+             <% } %>
+                <a class="card-link" href="/app/students/export">Click to Export</a>
               </div>
             </div>
           </div>
         </div> 
 </div> 
-<br>
+
+<% if(fileName){%>
+  <a href="/public/exports/<%=fileName%>" download="<%=fileName%>" id="download-link"></a>
+<% } %>
+
+<script>
+  document.getElementById('download-link').click()
+</script>
 
 <%- include('../footer')  %>
  
