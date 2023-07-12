@@ -9,15 +9,21 @@
 
     <form action="/app/staffs/add" method="post">
         <% if (errors.name){ %>
+            <div class="error-msg">
             <%= errors.name.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="name" id="inputName" placeholder="Staff Name">
          <% if (errors.subject){ %>
+            <div class="error-msg">
             <%= errors.subject.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="subject" id="inputSubject" placeholder="Subject">
         <% if (errors.department){ %>
+            <div class="error-msg">
             <%= errors.department.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" list="Departments">
         <datalist id="Departments">
@@ -29,7 +35,9 @@
             </datalist>
 
         <% if (errors.mobile_no){ %>
+            <div class="error-msg">
             <%= errors.mobile_no.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No">
         <button type="submit" class="btn btn-primary">Submit</button>

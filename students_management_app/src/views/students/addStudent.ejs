@@ -3,17 +3,21 @@
 <h3>STUDENTS SECTION</h3>
 
 <br>
-<div class="container">
+<div class="container container-shink">
 
     <h4>Add Student</h4>
     
     <form action="/app/students/add" method="post"> 
         <% if (errors.name){ %>
-            <%= errors.name.msg %>
+            <div class="error-msg">
+                <%= errors.name.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="name" id="inputName" placeholder="Student Name">
         <% if (errors.stream){ %>
-            <%= errors.stream.msg %>
+            <div class="error-msg">
+                <%= errors.stream.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Stream" list="Streams">
         <datalist id="Streams">
@@ -25,7 +29,9 @@
             </datalist>
 
         <% if (errors.department){ %>
+            <div class="error-msg">
             <%= errors.department.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" list="Departments">
         <datalist id="Departments">
@@ -35,23 +41,32 @@
             </option>
             <% }%>
             </datalist>
-            
+        
+  <table>
+    <td>
         <% if (errors.batch){ %>
+            <div class="error-msg">
             <%= errors.batch.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="batch" id="inputBatch" placeholder="Batch">
+    </td>
+    <td>
         <% if (errors.dob){ %>
+            <div class="error-msg">
             <%= errors.dob.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="dob" id="inputDOB" placeholder="Enter Date_Of_Birth">
-        <% if (errors.mobile_no){ %>
-            <%= errors.mobile_no.msg %>
-       <% } %>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No">
+    </td>
+    <td>
         <input class="form-control shadow-none mb-3 phText" type="text" name="age" id="inputAge" placeholder="Age">
-        <input class="form-control shadow-none mb-3 phText" type="text" name="address" id="inputAddress" placeholder="Address">
+    </td>
+    <td>
         <% if (errors.blood_group){ %>
+            <div class="error-msg">
             <%= errors.blood_group.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group" list="BloodGroup">
         <datalist id="BloodGroup"
@@ -59,9 +74,23 @@
   <option value="<%=grp.group%>">grp.group</option>
   <% }%>
   </datalist>
+    </td>
+    <td>
+        <% if (errors.mobile_no){ %>
+            <div class="error-msg">
+            <%= errors.mobile_no.msg %>
+            </div>
+           <% } %>
+           <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No">
+    </td>
+    <td>
+        <input class="form-control shadow-none mb-3 phText" type="text" name="address" id="inputAddress" placeholder="Address">
+    </td>
+ </table>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<br><br>
 
 
 

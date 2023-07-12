@@ -9,19 +9,27 @@
 
     <form action="/app/staffs/update" method="post">
         <% if (errors.successmsg){ %>
-            <%= errors.successmsg %>
+            <p style="color: green;">
+                <%= errors.successmsg %>
+               </p>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="integer" name="id" id="inputid" placeholder="ID" value="<%=data.ID%>" hidden>
         <% if (errors.name){ %>
+            <div class="error-msg">
             <%= errors.name.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="name" id="inputName" placeholder="Staff Name" value="<%=data.NAME%>">
          <% if (errors.subject){ %>
+            <div class="error-msg">
             <%= errors.subject.msg %>
-       <% } %>
+            </div>
+            <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="subject" id="inputSubject" placeholder="Subject" value="<%=data.SUBJECT%>">
         <% if (errors.department){ %>
+            <div class="error-msg">
             <%= errors.department.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" value="<%=data.DEPARTMENT%>" list="Departments">
         <datalist id="Departments">
@@ -33,15 +41,26 @@
             </datalist>
             
         <% if (errors.mobile_no){ %>
+            <div class="error-msg">
             <%= errors.mobile_no.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No" value="<%=data.MOBILE_NO%>">
         <% if (errors.email){ %>
+            <div class="error-msg">
             <%= errors.email.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="email" id="inputEmail" placeholder="Email" value="<%=data.EMAIL%>">
-        <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
+        <table>
+            <td>
+            <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
+            </td>
+            <td>
+            <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
+            </td>
+        </table>
+        
         <button type="submit" class="btn btn-secondary">Update</button>
     </form>
     <br>

@@ -1,11 +1,49 @@
 body {
-    background-color: aqua;
+    background-color: orange;
 }
 
 .bg-light {
-    background-color : orange !important;
+    background-color :black !important;
 }
-
+.navbar{
+    text-transform: lowercase;
+    text-decoration: underline;
+    text-decoration-color:    rgba(245, 171, 34, 0.853) ;
+    padding-left: 200px;
+    padding-right: 100px;
+}
 .navbar-brand, .nav-link{
-    color :rgb(97, 165, 42) !important ;
+    color :   rgba(245, 171, 34, 0.853) !important ;
+}
+.welcome-container{
+    padding-top: 50px;
+}
+.footer-container{
+    font-style: italic;
+    font-size: small;
+    background-color: black;
+    color: gray;
+    text-align: center;
+}
+.card-link{
+    color: gray;
+    text-decoration: none !important;
+}
+.card-title{
+    color:  rgba(245, 171, 34, 0.853) ;
+}
+.card,
+.card-body{
+    border-radius: 25px;
+}
+.card-link:hover{
+    color: blue;
+}
+.error-msg{
+    color:red;
+    padding-bottom: 2px;
+}
+.container-shrink{
+        padding-left :200px;
+        padding-right: 200px;
 }

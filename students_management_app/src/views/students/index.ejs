@@ -29,7 +29,9 @@
                           <%= errors.student_id.msg %>
                      <% } %>
                      <% if (errors.no_Data){ %>
-                         <%= errors.no_Data %>
+                         <div class="error-msg">
+                          <%= errors.no_Data %>
+                         </div>
                     <% } %>
                     <% if (errors.opsError2){ %>
                        <%= errors.opsError2 %>

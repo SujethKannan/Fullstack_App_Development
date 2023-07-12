@@ -9,15 +9,21 @@
     
     <form action="/app/students/update" method="post">
         <% if (errors.successmsg){ %>
+            <p style="color: green;">
             <%= errors.successmsg %>
+           </p>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="integer" name="id" id="inputid" placeholder="ID" value="<%=data.ID%>" hidden>
         <% if (errors.name){ %>
+            <div class="error-msg">
             <%= errors.name.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="name" id="inputName" placeholder="Student Name" value="<%=data.NAME%>">
         <% if (errors.stream){ %>
+            <div class="error-msg">
             <%= errors.stream.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Stream" value="<%=data.STREAM%>" list="Streams">
         <datalist id="Streams">
@@ -29,7 +35,9 @@
             </datalist>
 
         <% if (errors.department){ %>
+            <div class="error-msg">
             <%= errors.department.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="department" id="inputDepartment" placeholder="Department" value="<%=data.DEPARTMENT%>" list="Departments">
         <datalist id="Departments">
@@ -41,25 +49,35 @@
             </datalist>
 
         <% if (errors.batch){ %>
+            <div class="error-msg">
             <%= errors.batch.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="batch" id="inputBatch" placeholder="Batch" value="<%=data.BATCH%>">
         <% if (errors.dob){ %>
+            <div class="error-msg">
             <%= errors.dob.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="dob" id="inputDOB" placeholder="Enter Date_Of_Birth" value="<%=data.DOB%>">
         <% if (errors.mobile_no){ %>
+            <div class="error-msg">
             <%= errors.mobile_no.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="mobile_no" id="inputMobile_no" placeholder="Mobile_No" value="<%=data.MOBILE_NO%>">
         <% if (errors.email){ %>
+            <div class="error-msg">
             <%= errors.email.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="email" id="inputEmail" placeholder="Email" value="<%=data.EMAIL%>">
         <input class="form-control shadow-none mb-3 phText" type="text" name="age" id="inputAge" placeholder="Age" value="<%=data.AGE%>">
         <input class="form-control shadow-none mb-3 phText" type="text" name="address" id="inputAddress" placeholder="Address" value="<%=data.ADDRESS%>">
         <% if (errors.blood_group){ %>
+            <div class="error-msg">
             <%= errors.blood_group.msg %>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="text" name="blood_group" id="inputBlood_group" placeholder="Blood_group" value="<%=data.BLOOD_GROUP%>" list="BloodGroup">
         <datalist id="BloodGroup"
@@ -67,8 +85,15 @@
        <option value="<%=grp.group%>">grp.group</option>
         <% }%>
   </datalist>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
-        <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
+    <table>
+        <td>
+            <input class="form-control shadow-none mb-3 phText" type="text" name="CREATED_ON" id="inputCREATED_ON"  value="<%=data.CREATED_ON%>" readonly>
+        </td>
+        <td>
+            <input class="form-control shadow-none mb-3 phText" type="text" name="MODIFIED_ON" id="inputMODIFIED_ON"  value="<%=data.MODIFIED_ON%>" readonly>
+        </td>
+    </table>
+        
         <button type="submit" class="btn btn-secondary">Update</button>
     </form>
     <br>
