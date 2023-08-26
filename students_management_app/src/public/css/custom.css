@@ -43,6 +43,10 @@ body {
     color:red;
     padding-bottom: 2px;
 }
+.success-msg{
+    color:green;
+    padding-bottom: 2px;
+}
 .container-shrink{
         padding-left :200px;
         padding-right: 200px;

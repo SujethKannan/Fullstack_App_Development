@@ -9,11 +9,17 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Add a Student</h5>
-                <% if (errors.student_id){ %>
-                    <%= errors.student_id.msg %>
-               <% } %>
-               <% if (errors.opsError){ %>
-                  <%= errors.opsError %>
+
+                <% if (errors.opsError){ %>
+                  <div class="success-msg">
+                <%= errors.opsError %>
+                  </div>
+                <% } %>
+              
+               <% if (errors.opsError1){ %>
+                <div class="error-msg">
+                  <%= errors.opsError1 %>
+                </div>
              <% } %>
              <br>
                 <a class="card-link" href="/app/students/add">Click to Add a Student ➪</a>
@@ -26,7 +32,9 @@
                 <h5 class="card-title">Search a Student</h5>
                 <form action="/app/students/search" method="post">
                     <% if (errors.student_id){ %>
+                        <div class="error-msg">
                           <%= errors.student_id.msg %>
+                        </div>
                      <% } %>
                      <% if (errors.no_Data){ %>
                          <div class="error-msg">
@@ -34,7 +42,19 @@
                          </div>
                     <% } %>
                     <% if (errors.opsError2){ %>
+                      <div class="error-msg">
                        <%= errors.opsError2 %>
+                      </div>
+                  <% } %>
+                  <% if (errors.opsError4){ %>
+                    <div class="success-msg">
+                  <%= errors.opsError4 %>
+                </div>
+                  <% } %>
+                  <% if (errors.opsError5){ %>
+                    <div class="error-msg">
+                  <%= errors.opsError5 %>
+                </div>
                   <% } %>
                   <input type="text" class="form-control shadow-none mb-3 phText" name="student_id" placeholder="Enter student_id to search">
               </form>
@@ -47,6 +67,11 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">View Students All Details</h5>
+                <% if (errors.opsError6){ %>
+                  <div class="error-msg">
+                <%= errors.opsError6 %>
+              </div>
+                <% } %>
                 <a class="card-link" href="/app/students/details">Click to View Students Details ➪</a>
               </div>
             </div>

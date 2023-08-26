@@ -9,9 +9,9 @@
     
     <form action="/app/students/update" method="post">
         <% if (errors.successmsg){ %>
-            <p style="color: green;">
+            <div class="success-msg">
             <%= errors.successmsg %>
-           </p>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="integer" name="id" id="inputid" placeholder="ID" value="<%=data.ID%>" hidden>
         <% if (errors.name){ %>
@@ -94,7 +94,7 @@
         </td>
     </table>
         
-        <button type="submit" class="btn btn-secondary">Update</button>
+        <button type="submit" class="btn btn-secondary">Update</button>  
     </form>
     <br>
     <a href="/app/students/delete/<%= data.ID%>" class="btn btn-danger">Delete</a>

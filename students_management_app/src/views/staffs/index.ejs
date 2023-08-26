@@ -8,14 +8,11 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Add a Staff</h5>
-              <% if (errors.staff_id){ %>
-                <%= errors.staff_id.msg %>
-           <% } %>
-           <% if (errors.no_Data){ %>
-            <%= errors.no_Data %>
-        <% } %>
-        <% if (errors.opsError){ %>
-        <%= errors.opsError %>
+        
+        <% if (errors.opsError1){ %>
+          <div class="error-msg">
+        <%= errors.opsError1 %>
+          </div>
         <% } %>
            <br>
            <a class="card-link" href="/app/staffs/add">Click to Add a Staff ➪</a>
@@ -28,13 +25,29 @@
               <h5 class="card-title">Search a Staff</h5>
               <form action="/app/staffs/search" method="post">
                 <% if (errors.staff_id){ %>
+                  <div class="error-msg">
                     <%= errors.staff_id.msg %>
+                  </div>
                <% } %>
                <% if (errors.no_Data){ %>
+                <div class="error-msg">
                 <%= errors.no_Data %>
+                </div>
             <% } %>
-            <% if (errors.opsError){ %>
-            <%= errors.opsError %>
+            <% if (errors.opsError2){ %>
+              <div class="error-msg">
+            <%= errors.opsError2 %>
+          </div>
+            <% } %>
+            <% if (errors.opsError4){ %>
+              <div class="success-msg">
+            <%= errors.opsError4 %>
+          </div>
+            <% } %>
+            <% if (errors.opsError5){ %>
+              <div class="error-msg">
+            <%= errors.opsError5 %>
+          </div>
             <% } %>
                 <input type="text" class="form-control shadow-none mb-3 phText" name="staff_id" placeholder="Enter staff_id to search">  
             </form>
@@ -47,6 +60,11 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">View Staffs All Details</h5>
+              <% if (errors.opsError6){ %>
+                <div class="error-msg">
+              <%= errors.opsError6 %>
+            </div>
+              <% } %>
               <a class="card-link" href="/app/staffs/details" >Click to View Staffs Details ➪</a>
             </div>
           </div>

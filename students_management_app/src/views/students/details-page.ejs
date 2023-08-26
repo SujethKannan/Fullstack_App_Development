@@ -4,8 +4,19 @@
 
 <div class="container">
 
-  <table>
-    <tr>
+  <style>
+    table {
+       border:1px solid black;
+       padding: 1px;
+    }
+    th, td{
+       border:1px solid black;
+       padding: 2px;
+    }
+ </style>
+  <center> <h4>STUDENTS DETAILS PAGE</h4></center>
+  <table style="width: 100%">
+    <tr >
       <th>ID</th>
       <th>NAME</th>
       <th>STREAM</th>
@@ -28,6 +39,7 @@
     </tr>
     <% } %>
   </table>
+  <br>
   <a class ="btn btn-secondary" href="/app/students">Back</Details></a>
 
 </div>

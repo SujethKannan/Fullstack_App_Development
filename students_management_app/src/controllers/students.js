@@ -74,7 +74,7 @@ module.exports={
         }catch(error){
 
             console.log('[addStudent Controller] error:',error);
-            return response.render('students/index',{errors:{opsError:'Something Went wrong while adding student'},fileName:null})
+            return response.render('students/index',{errors:{opsError1:'Something Went wrong while adding student'},fileName:null})
 
         } 
     },
@@ -94,7 +94,7 @@ module.exports={
     }
         catch (error) {
             console.log('[searchStudent Controller] error:',error);
-            return response.render('students/index',{errors:{opsError1:'Something Went wrong while searching student'},fileName:null})            
+            return response.render('students/index',{errors:{opsError2:'Something Went wrong while searching student'},fileName:null})            
         }
     },
 
@@ -166,7 +166,7 @@ module.exports={
 
         } catch (error) {
             console.log('[updateStudent Controller] error:',error);
-            return response.render('students/index',{errors:{opsError:'Something Went wrong while updating student details'},fileName:null})
+            return response.render('students/index',{errors:{opsError3:'Something Went wrong while updating student details'},fileName:null})
         }
     },
     deleteStudent : async function(request,response){
@@ -176,10 +176,10 @@ module.exports={
             if(result === constants.resultFlag.error){
                 return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'},fileName:null})
             }
-            return response.render('students/index',{errors:{opsError:'Student Deleted Successfully'},fileName:null})
+            return response.render('students/index',{errors:{opsError4:'Student Deleted Successfully'},fileName:null})
         } catch (error) {
             console.log('[deleteStudent Controller] error:',error);
-            return response.render('students/index',{errors:{opsError:'Something Went wrong while deleting student'},fileName:null})
+            return response.render('students/index',{errors:{opsError5:'Something Went wrong while deleting student'},fileName:null})
         }
     },
     getStudentsData : async function(request,response){
@@ -188,7 +188,7 @@ module.exports={
             return response.render('students/details-page',{data:data});
         } catch (error) {
             console.log('[getStudentData Controller] error:',error);
-            return response.render('students/index',{errors:{opsError:'Something Went wrong while fetching students data'},fileName:null});
+            return response.render('students/index',{errors:{opsError6:'Something Went wrong while fetching students data'},fileName:null});
             
         }
     },

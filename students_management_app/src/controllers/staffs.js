@@ -44,12 +44,12 @@ module.exports={
             if(result===constants.resultFlag.success){
                return  response.render('staffs/addStaff',{errors:{opsError:'Staff Added Successfully'}, departmentData:departmentData})
             }
-              return response.render('staffs/addStaff',{errors:{opsError:'Something Went wrong while adding staff'}, departmentData:departmentData})
+              return response.render('staffs/addStaff',{errors:{opsError1:'Something Went wrong while adding staff'}, departmentData:departmentData})
 
         }catch(error){
 
             console.log('[addStaffs Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while adding staff'},fileName:null})
+            return response.render('staffs/index',{errors:{opsError1:'Something Went wrong while adding staff'},fileName:null})
 
         } 
     },
@@ -77,7 +77,7 @@ module.exports={
     }
         catch (error) {
             console.log('[searchStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while searching staff'},fileName:null})            
+            return response.render('staffs/index',{errors:{opsError2:'Something Went wrong while searching staff'},fileName:null})            
         }
     },
 
@@ -126,7 +126,7 @@ module.exports={
 
         } catch (error) {
             console.log('[updateStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while updating staff'},fileName:null})            
+            return response.render('staffs/index',{errors:{opsError3:'Something Went wrong while updating staff'},fileName:null})            
         }
     },
     deleteStaff : async function(request,response){
@@ -136,10 +136,10 @@ module.exports={
             if(result === constants.resultFlag.error){
                 return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'},fileName:null})
             }
-            return response.render('staffs/index',{errors:{opsError:'Staff Deleted Successfully'},fileName:null})
+            return response.render('staffs/index',{errors:{opsError4:'Staff Deleted Successfully'},fileName:null})
         } catch (error) {
             console.log('[deleteStaff Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while deleting staff'},fileName:null})
+            return response.render('staffs/index',{errors:{opsError5:'Something Went wrong while deleting staff'},fileName:null})
         }
     },
     getStaffsDetails : async function(request,response){
@@ -148,7 +148,7 @@ module.exports={
             return response.render('staffs/details-page',{data:data});
         } catch (error) {
             console.log('[getStaffsDetails Controller] error:',error);
-            return response.render('staffs/index',{errors:{opsError:'Something Went wrong while fetching staffs data'},fileName:null});
+            return response.render('staffs/index',{errors:{opsError6:'Something Went wrong while fetching staffs data'},fileName:null});
             
         }
     },

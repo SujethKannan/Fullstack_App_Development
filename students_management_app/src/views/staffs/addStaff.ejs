@@ -8,6 +8,12 @@
     <h4>Add Staff</h4>
 
     <form action="/app/staffs/add" method="post">
+        <% if (errors.opsError){ %>
+            <div class="success-msg">
+          <%= errors.opsError %>
+            </div>
+          <% } %>
+   
         <% if (errors.name){ %>
             <div class="error-msg">
             <%= errors.name.msg %>

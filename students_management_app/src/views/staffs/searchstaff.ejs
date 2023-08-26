@@ -9,9 +9,9 @@
 
     <form action="/app/staffs/update" method="post">
         <% if (errors.successmsg){ %>
-            <p style="color: green;">
+            <div class="success-msg">
                 <%= errors.successmsg %>
-               </p>
+            </div>
        <% } %>
         <input class="form-control shadow-none mb-3 phText" type="integer" name="id" id="inputid" placeholder="ID" value="<%=data.ID%>" hidden>
         <% if (errors.name){ %>
