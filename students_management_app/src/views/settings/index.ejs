@@ -2,7 +2,8 @@
 
 <br>
 <div class ="Container">
-  <h3>Settings Page</h3> 
+  <br>
+  <center><h3>Settings Page</h3></center> 
   
   <form action="/app/settings/department/add" method="post">
     <% if (message.department){ %>
@@ -55,6 +56,7 @@
     <input class="form-control shadow-none mb-3 phText" type="text" name="stream" id="inputStream" placeholder="Add New Stream">
     <button class="btn btn-primary" type="submit">Add</button>
     </form>
+    <br>
 
     <form action="/app/settings/stream/delete" method="post">
       <% if (message.deleteStream){ %>
