@@ -12,8 +12,6 @@ module.exports={
             const departmentData = await getAllDepartments();
             const streamData = await getAllStreams();
         try {
-            const departmentData = await getAllDepartments();
-            const streamData = await getAllStreams();
             const errors = validationResult(request);
             if(!errors.isEmpty()){
                 return response.render('settings/index',{ message:errors.mapped(), departmentData:departmentData , streamData:streamData})  
